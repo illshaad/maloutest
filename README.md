@@ -1,7 +1,7 @@
 #1 STEP 
 
  - Installation ANGULAR 8 et ChartJs 
- - Mise en place des données fictifes pour ChartJs et affiche du           graphique
+ - Mise en place des données fictifes pour ChartJs et affichage du           graphique
 
  #2 STEP
 
