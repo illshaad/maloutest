@@ -1,11 +1,11 @@
 #1 STEP 
 
  - Installation ANGULAR 8 et ChartJs 
- - Mise en place des données fictifes pour ChartJs et affichage du           graphique
+ - Mise en place des données fictives pour ChartJs et affichage du           graphique
 
  #2 STEP
 
- - Installation NodeJs création et modélisation de schema donnée NoSQL     avec Mongoose
+ - Installation NodeJs création et modélisation de schema de donnée NoSQL     avec Mongoose
  - Requette api Foursquare 
 
  #3 STEP en cours...
