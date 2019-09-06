@@ -17,7 +17,7 @@ mongoose.connect(dbUrl, options, error => {
   if (error) {
     console.error(error);
   } else {
-    console.log('Your database is operational...')
+    console.log('Connexion OK!')
   }
 });
 

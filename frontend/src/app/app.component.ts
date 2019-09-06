@@ -1,5 +1,7 @@
 import { Component,OnInit } from '@angular/core';
-import {Chart} from 'chart.js';
+import { DataService } from'../../src/app/data.service'
+import { Chart } from 'chart.js';
+
 
 @Component({
   selector: 'app-root',
@@ -7,16 +9,28 @@ import {Chart} from 'chart.js';
   styleUrls: ['./app.component.css']
   
 })
+
 export class AppComponent implements OnInit {
+  constructor(private dataService : DataService){
+    this.dataService.getData()
+      .subscribe(data =>{
+
+        let name_restaurant =  data['response'].map(data => data.groups[0].items[0].venue.name);
+        let plurial_name = data['response'].map(data => data.categories[2])
+        let formattedAddress = data['response'].map(data => data.groups[0].items[0].formattedAddress)
+      })
+  }
+
   title = 'Graphique Bar';
   BarChart=[];
- 
+
   ngOnInit()
   {
-    const BarChart = new Chart('barChart', {
+    const BarChart = new Chart('barChart', 
+    {
       type: 'bar',
       data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      labels: ["Restaurant n°1"],
       datasets: [{
         label: '# of Votes',
         data: [4, 7 , 3, 5, 2, 10],
