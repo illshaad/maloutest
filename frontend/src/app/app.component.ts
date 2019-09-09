@@ -21,43 +21,72 @@ export class AppComponent{
  
   ngOnInit()
   {
-    this.dataService.getData().subscribe(response => {
-      // let name_restaurant =  data['response'].map(data => data.groups[0].items[0].venue.name);
-      // let plurial_name = data['response'].map(data => data.categories[2])
-      // let formattedAddress = data['response'].map(data => data.groups[0].items[0].formattedAddress)
-      console.log(response, 'mes donnés')
-  
+    this.dataService.getData().subscribe(responseOn => {
+      console.log(responseOn, 'mes donnés paris')
+    this.dataService.getData_three().subscribe(responseTwo =>{
+      console.log(responseTwo, 'mes donnés barcelone')
+    
+    this.dataService.getData_two().subscribe(responseThree => {
+      console.log(responseThree, 'mes donnés rome');
+    
+      const paris = [];
+      for(var a in responseOn['response']){
+        paris.push(responseOn['response'].totalResults)
+      }
+      const rome = [];
+      for(var b in responseTwo['response']){
+        rome.push(responseTwo['response'].totalResults)
+      }
+      const barcelone = [];
+      for(var c in responseThree['response']){
+        barcelone.push(responseThree['response'].totalResults)
+      }
+      console.log(paris, 'test');
+    
     const BarChart = new Chart('barChart', {
     type: 'bar',
     data: {
-     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
      datasets: [{
-         label: '# of Votes',
-         data: [1,4,19,50,6,15] ,
+         label: 'Paris',
+         data: paris ,
          backgroundColor: [
-             'rgba(255, 99, 132, 0.2)',
-             'rgba(54, 162, 235, 0.2)',
-             'rgba(255, 206, 86, 0.2)',
-             'rgba(75, 192, 192, 0.2)',
-             'rgba(153, 102, 255, 0.2)',
-             'rgba(255, 159, 64, 0.2)'
+             'rgba(83, 66, 209, 1)',
+          
          ],
          borderColor: [
-             'rgba(255,99,132,1)',
-             'rgba(54, 162, 235, 1)',
-             'rgba(255, 206, 86, 1)',
-             'rgba(75, 192, 192, 1)',
-             'rgba(153, 102, 255, 1)',
-             'rgba(255, 159, 64, 1)'
+             'rgba(83, 46, 209, 1)',
          ],
-         borderWidth: 1
-     }]
+         borderWidth: 1,
+         
+     },
+     {
+      label: 'Rome',
+      data: rome ,
+      backgroundColor: [
+          'rgba(197, 48, 73, 1)',
+         
+      ],
+      borderColor: [
+          'rgba(197, 68, 73, 1)',
+      ],
+      borderWidth: 1,
+      
+  },
+     {
+       label :'Barcelone',
+       data:barcelone,
+       backgroundColor: [
+        'rgba(124, 203, 143, 1)',
+    ],
+        borderColor: [
+          'rgba(124, 253, 143, 1)',
+         
+        ],
+        borderWidth : 1,
+     }],
+     labels: ['Nombres de restaurants par capital'],
     }, 
     options: {
-     title:{
-         text:"Bar Chart",
-         display:true
-     },
      scales: {
          yAxes: [{
              ticks: {
@@ -67,6 +96,8 @@ export class AppComponent{
      }
     }
     });
+  })
+  }) 
   })
   }
 }

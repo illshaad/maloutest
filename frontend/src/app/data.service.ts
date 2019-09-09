@@ -9,7 +9,16 @@ import { map } from 'rxjs/operators/';
 export class DataService {
     constructor(private http : HttpClient) {}
         getData(){
-            return this.http.get("http://localhost:3000/first")
+            return this.http.get("http://localhost:3000/paris")
             .pipe(map(response => response))
         }
+        getData_two(){
+            return this.http.get("http://localhost:3000/rome")
+            .pipe(map(response => response))
+        }
+        getData_three(){
+            return this.http.get("http://localhost:3000/barcelone")
+            .pipe(map(response => response))
+        }
+       
 }
