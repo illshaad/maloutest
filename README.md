@@ -1,7 +1,7 @@
 #1 STEP 
 
- - Installation ANGULAR 8 et ChartJs 
- - Mise en place des données fictives pour ChartJs et affichage du graphique
+ - Installation ANGULAR 8 et ChartJs  ok!
+ - Mise en place des données fictives pour ChartJs et affichage du graphique ok!
 
  #2 STEP
 
@@ -10,6 +10,6 @@
 
  #3 STEP
 
-  - Réussir à transférer la donnée Node js => Angular Ok !
-  - Stocker cette donnée reçu du backend dans un state en frontend
+  - Transférer la donnée Node js => Angular ok !
+  - Sauvegarder donnée du frontend au backend does not work !!!
   - Mettre à jour les données en dynamique en frontend du graphique ok!
