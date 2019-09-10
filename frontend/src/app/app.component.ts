@@ -12,75 +12,80 @@ import { Chart } from 'chart.js';
 
 export class AppComponent{
 
-  title = 'Graphique Bar';
-  BarChart=[];
+  title = '';
+  BarChart= [] ;
 
+ 
 
   constructor(private dataService : DataService){}
-
+  handleClick(event : Event){
+    this.dataService.saveData()
+    .subscribe(data => {
+    console.log(data, 'data save for mlab');
+    });
+     // handleClick(event : Event){
+  //   this.dt.saveData(totalResults)
+  //   .subscribe(data => {
+  //   console.log(data, 'data save for mlab');
+  //   });
+  // }
+  }
  
   ngOnInit()
   {
-    this.dataService.getData().subscribe(responseOn => {
-      console.log(responseOn, 'mes donnés paris')
-    this.dataService.getData_three().subscribe(responseTwo =>{
-      console.log(responseTwo, 'mes donnés barcelone')
     
-    this.dataService.getData_two().subscribe(responseThree => {
-      console.log(responseThree, 'mes donnés rome');
-    
-      const paris = [];
-      for(var a in responseOn['response']){
-        paris.push(responseOn['response'].totalResults)
+    this.dataService.getData()
+    .subscribe(response_on => {
+    this.dataService.getData_three()
+    .subscribe(response_two =>{
+    this.dataService.getData_two()
+    .subscribe(response_three => {
+      const dataParis = [];
+      for(var a in response_on['response']){
+        dataParis.push(response_on['response'].totalResults)
       }
-      const rome = [];
-      for(var b in responseTwo['response']){
-        rome.push(responseTwo['response'].totalResults)
+      const dataRome = [];
+      for(var b in response_two['response']){
+        dataRome.push(response_two['response'].totalResults)
       }
-      const barcelone = [];
-      for(var c in responseThree['response']){
-        barcelone.push(responseThree['response'].totalResults)
+      const dataMadrid = [];
+      for(var c in response_three['response']){
+        dataMadrid.push(response_three['response'].totalResults)
       }
-      console.log(paris, 'test');
-    
+      
     const BarChart = new Chart('barChart', {
     type: 'bar',
     data: {
      datasets: [{
-         label: 'Paris',
-         data: paris ,
-         backgroundColor: [
-             'rgba(83, 66, 209, 1)',
-          
-         ],
-         borderColor: [
-             'rgba(83, 46, 209, 1)',
-         ],
-         borderWidth: 1,
-         
-     },
-     {
-      label: 'Rome',
-      data: rome ,
+      label: 'Paris',
+      data: dataParis ,
       backgroundColor: [
-          'rgba(197, 48, 73, 1)',
-         
+      'rgba(83, 66, 209, 1)',
       ],
       borderColor: [
-          'rgba(197, 68, 73, 1)',
+      'rgba(83, 46, 209, 1)',
       ],
       borderWidth: 1,
-      
-  },
+     },
+      {
+      label: 'Rome',
+      data: dataRome ,
+      backgroundColor: [
+        'rgba(197, 48, 73, 1)',
+      ],
+      borderColor: [
+        'rgba(197, 68, 73, 1)',
+      ],
+      borderWidth: 1,
+      },
      {
-       label :'Barcelone',
-       data:barcelone,
+       label :'Madrid',
+       data: dataMadrid ,
        backgroundColor: [
         'rgba(124, 203, 143, 1)',
-    ],
+      ],
         borderColor: [
           'rgba(124, 253, 143, 1)',
-         
         ],
         borderWidth : 1,
      }],
@@ -90,14 +95,15 @@ export class AppComponent{
      scales: {
          yAxes: [{
              ticks: {
-                 beginAtZero:true
-             }
+              beginAtZero:true
+            }
          }]
-     }
-    }
+        }
+      }
     });
+    })
+    }) 
   })
-  }) 
-  })
+  
   }
 }
