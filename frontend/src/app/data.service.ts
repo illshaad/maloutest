@@ -23,11 +23,12 @@ export class DataService {
         return this.http.get("http://localhost:3000/madrid")
         .pipe(map(response => response))
     }
-     saveData(){
+     saveData(sendDataFromBack){
         return this.http.post("http://localhost:3000/save",{
             headers : new HttpHeaders({
                 'Content-Type' : 'application/json',
             }),
+            body : sendDataFromBack
         })
     }
      // saveData(totalResults){

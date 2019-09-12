@@ -14,13 +14,17 @@ export class AppComponent{
 
   title = '';
   BarChart= [] ;
+  
+
   constructor(private dataService : DataService){}
   handleClick(event : Event){
-    this.dataService.saveData()
+    const sendDataFromBack = JSON.parse(localStorage.getItem('totalResult'))
+    console.log(sendDataFromBack ,'PARSE JSONNN DATA');
+    
+    this.dataService.saveData(sendDataFromBack)
     .subscribe(data => {
-      const sendData = [];
-     
-
+      console.log(data , 'ma data send');
+      
     });
      // handleClick(event : Event){
   //   this.dt.saveData(totalResults)
@@ -42,7 +46,8 @@ export class AppComponent{
       const dataParis = [response_on['response']].map(data => data.totalResults)
       const dataRome = [response_two['response']].map(data => data.totalResults)
       const dataMadrid = [response_three['response']].map(data => data.totalResults)
-      
+      localStorage.setItem('totalResult',JSON.stringify(`[${dataParis}, ${dataRome}, ${dataMadrid}]`))
+
     const BarChart = new Chart('barChart', {
     type: 'bar',
     data: {
