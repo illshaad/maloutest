@@ -14,14 +14,13 @@ export class AppComponent{
 
   title = '';
   BarChart= [] ;
-
- 
-
   constructor(private dataService : DataService){}
   handleClick(event : Event){
     this.dataService.saveData()
     .subscribe(data => {
-    console.log(data, 'data save for mlab');
+      const sendData = [];
+     
+
     });
      // handleClick(event : Event){
   //   this.dt.saveData(totalResults)
@@ -40,18 +39,9 @@ export class AppComponent{
     .subscribe(response_two =>{
     this.dataService.getData_two()
     .subscribe(response_three => {
-      const dataParis = [];
-      for(var a in response_on['response']){
-        dataParis.push(response_on['response'].totalResults)
-      }
-      const dataRome = [];
-      for(var b in response_two['response']){
-        dataRome.push(response_two['response'].totalResults)
-      }
-      const dataMadrid = [];
-      for(var c in response_three['response']){
-        dataMadrid.push(response_three['response'].totalResults)
-      }
+      const dataParis = [response_on['response']].map(data => data.totalResults)
+      const dataRome = [response_two['response']].map(data => data.totalResults)
+      const dataMadrid = [response_three['response']].map(data => data.totalResults)
       
     const BarChart = new Chart('barChart', {
     type: 'bar',
