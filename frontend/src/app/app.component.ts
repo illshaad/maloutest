@@ -39,16 +39,16 @@ export class AppComponent{
     ///////////// ///////////// ///////////// ///////////// ///////////// ///////////// ///////////// ///////////// /////////////
     
     this.dataService.getDataParis()
-    .subscribe(response_on => {
-      const dataParis = [response_on['response']].map(data => data.totalResults);
+    .subscribe(response => {
+      const dataParis = [response['response']].map(data => data.totalResults);
       
     this.dataService.getDataRome()
-    .subscribe(response_two =>{
-      const dataRome = [response_two['response']].map(data => data.totalResults);
+    .subscribe(response =>{
+      const dataRome = [response['response']].map(data => data.totalResults);
 
     this.dataService.getDataMadrid()
-    .subscribe(response_three => {
-      const dataMadrid = [response_three['response']].map(data => data.totalResults);
+    .subscribe(response => {
+      const dataMadrid = [response['response']].map(data => data.totalResults);
       
     localStorage.setItem('totalResult', JSON.stringify(`[${dataParis}, ${dataRome}, ${dataMadrid}]`));
 

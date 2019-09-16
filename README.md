@@ -18,5 +18,6 @@
 Lecture du projet :
 
 - Git clone repository maloutechnique ;
+- CD maloutechnique;
 - CD frontend npm install et faire un npm start pour lancer le frontend;
 - CD backend npm install et faire un npm start pour lancer le backend;
