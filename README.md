@@ -13,3 +13,10 @@
   - Transférer la donnée Node js => Angular ok !
   - Sauvegarder donnée du frontend au backend does not work !!!
   - Mettre à jour les données en dynamique en frontend du graphique ok!
+ 
+
+Lecture du projet :
+
+Git clone repository maloutechnique ;
+CD frontend npm install et faire un npm start pour lancer le frontend;
+CD backend npm install et faire un npm start pour lancer le backend;

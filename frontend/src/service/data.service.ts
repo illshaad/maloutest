@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators/';
@@ -11,15 +10,26 @@ import { map } from 'rxjs/operators/';
 
 export class DataService {
     constructor(private http : HttpClient) {}
-    getData(){
+
+    //Refactorisation //
+    // getDataAll(){
+    //     return this.http.get("http://localhost:3000/alldata")
+    //     .pipe(map(response => response))
+    // }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    getDataParis(){
         return this.http.get("http://localhost:3000/paris")
         .pipe(map(response => response))
-    }
-    getData_two(){
+    };
+   
+    getDataRome(){
         return this.http.get("http://localhost:3000/rome")
         .pipe(map(response => response))
     }
-    getData_three(){
+    getDataMadrid(){
         return this.http.get("http://localhost:3000/madrid")
         .pipe(map(response => response))
     }
@@ -31,13 +41,6 @@ export class DataService {
             body : sendDataFromBack
         })
     }
-     // saveData(totalResults){
-    //    const obj = {
-    //        totalResults
-    //    };
-    //    console.log(obj);
-    //    this.http.post('http://localhost:3000/save',obj)
-    // }
 }
 
 

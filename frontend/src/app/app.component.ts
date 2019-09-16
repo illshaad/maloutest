@@ -1,5 +1,5 @@
-import { Component,OnInit } from '@angular/core';
-import { DataService } from'../../src/app/data.service'
+import { Component } from '@angular/core';
+import { DataService } from'../service/data.service'
 import { Chart } from 'chart.js';
 
 
@@ -17,36 +17,40 @@ export class AppComponent{
   
 
   constructor(private dataService : DataService){}
-  handleClick(event : Event){
-    const sendDataFromBack = JSON.parse(localStorage.getItem('totalResult'))
-    console.log(sendDataFromBack ,'PARSE JSONNN DATA');
-    
-    this.dataService.saveData(sendDataFromBack)
-    .subscribe(data => {
-      console.log(data , 'ma data send');
-      
-    });
-     // handleClick(event : Event){
-  //   this.dt.saveData(totalResults)
-  //   .subscribe(data => {
-  //   console.log(data, 'data save for mlab');
-  //   });
-  // }
-  }
+
+    handleClick(event : Event){
+      const sendDataFromBack = JSON.parse(localStorage.getItem('totalResult'))
+      this.dataService.saveData(sendDataFromBack)
+      .subscribe(data => {
+        console.log(data , 'ma data send');
+      });
+      alert('donnée sauvegarder')
+    }
  
   ngOnInit()
   {
+    //Refactorisation //
+    // this.dataService.getAllData(){
+    //   .subscribe(responseAll =>{
+    //     const dataCityAllResult = [responseAll['response']].map(data => data.totalResult)
+    //   })
+    // }
+
+    ///////////// ///////////// ///////////// ///////////// ///////////// ///////////// ///////////// ///////////// /////////////
     
-    this.dataService.getData()
+    this.dataService.getDataParis()
     .subscribe(response_on => {
-    this.dataService.getData_three()
+      const dataParis = [response_on['response']].map(data => data.totalResults);
+      
+    this.dataService.getDataRome()
     .subscribe(response_two =>{
-    this.dataService.getData_two()
+      const dataRome = [response_two['response']].map(data => data.totalResults);
+
+    this.dataService.getDataMadrid()
     .subscribe(response_three => {
-      const dataParis = [response_on['response']].map(data => data.totalResults)
-      const dataRome = [response_two['response']].map(data => data.totalResults)
-      const dataMadrid = [response_three['response']].map(data => data.totalResults)
-      localStorage.setItem('totalResult',JSON.stringify(`[${dataParis}, ${dataRome}, ${dataMadrid}]`))
+      const dataMadrid = [response_three['response']].map(data => data.totalResults);
+      
+    localStorage.setItem('totalResult', JSON.stringify(`[${dataParis}, ${dataRome}, ${dataMadrid}]`));
 
     const BarChart = new Chart('barChart', {
     type: 'bar',
